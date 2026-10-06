@@ -491,7 +491,7 @@ function submitExam(reason) {
         reason: reason
     };
 
-    if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+    if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbzCjTBUYHkxcY0BCgYTAaEVCLSm5oR17etNwc8ErMv9Bx9hHI-1ozjhbm3fYP8oifY/exec") {
         fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
