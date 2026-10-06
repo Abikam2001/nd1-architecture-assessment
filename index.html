@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ND 1 Architecture - Algebra & Set Theory Assessment</title>
-    <!-- MathJax for Rendering LaTeX Equations -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    <!-- 1. MathJax Configuration (Must come BEFORE loading the MathJax script) -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <style>
         :root {
             --primary: #1e3a8a;
@@ -55,7 +67,7 @@
 
         /* Quiz Body */
         .question-card { margin-bottom: 25px; }
-        .question-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; line-height: 1.4; }
+        .question-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; line-height: 1.5; }
         .options { display: flex; flex-direction: column; gap: 10px; }
         .option-label { display: flex; align-items: center; padding: 12px 15px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.2s; }
         .option-label:hover { background: #f1f5f9; border-color: var(--primary); }
@@ -163,7 +175,7 @@
 // DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
 const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
 
-// QUESTION BANK
+// QUESTION BANK WITH PROPER LATEX ESCAPING
 const rawQuestions = [
     {
         q: "Simplify the expression: $2^3 \\times 2^4 \\div 2^2$",
@@ -363,9 +375,12 @@ function renderQuestion() {
         document.getElementById('submit-btn').classList.add('hidden');
     }
 
-    if (window.MathJax) {
-        MathJax.typesetPromise();
-    }
+    // Trigger MathJax re-render safely after DOM update
+    setTimeout(() => {
+        if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise();
+        }
+    }, 10);
 }
 
 // NAVIGATION
@@ -476,7 +491,7 @@ function submitExam(reason) {
         reason: reason
     };
 
-    if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+    if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== https://script.google.com/macros/s/AKfycbzCjTBUYHkxcY0BCgYTAaEVCLSm5oR17etNwc8ErMv9Bx9hHI-1ozjhbm3fYP8oifY/exec) {
         fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
